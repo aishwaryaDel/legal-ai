@@ -1,35 +1,41 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../repository/sequelize';
-import { CreateUserDTO, UpdateUserDTO, UserAttributes, UserCreationAttributes } from '../types/UserTypes';
+import { RoleAttributes, RoleCreationAttributes } from '../types/RoleTypes';
 
-export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+export class Role extends Model<RoleAttributes, RoleCreationAttributes> implements RoleAttributes {
   public id!: string;
-  public email!: string;
-  public password!: string;
   public name!: string;
+  public description!: string;
+  public permissions!: any;
+  public is_active!: boolean;
   public created_at!: Date;
   public updated_at!: Date;
 }
 
-User.init(
+Role.init(
   {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    email: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
-    name: {
-      type: DataTypes.STRING,
+    permissions: {
+      type: DataTypes.JSONB,
       allowNull: false,
+      defaultValue: {},
+    },
+    is_active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     },
     created_at: {
       type: DataTypes.DATE,
@@ -42,7 +48,7 @@ User.init(
   },
   {
     sequelize,
-    tableName: 'users',
+    tableName: 'roles',
     timestamps: false,
   }
 );
