@@ -18,6 +18,7 @@ describe('User API', () => {
           id: '1',
           email: 'user1@example.com',
           name: 'User One',
+          role: 'admin',
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -25,6 +26,7 @@ describe('User API', () => {
           id: '2',
           email: 'user2@example.com',
           name: 'User Two',
+          role: 'user',
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -60,6 +62,7 @@ describe('User API', () => {
         id: '1',
         email: 'user1@example.com',
         name: 'User One',
+        role: 'admin',
         created_at: new Date(),
         updated_at: new Date(),
       };
@@ -98,12 +101,14 @@ describe('User API', () => {
         email: 'newuser@example.com',
         password: 'password123',
         name: 'New User',
+        role: 'user',
       };
 
       const mockCreatedUser = {
         id: '3',
         email: 'newuser@example.com',
         name: 'New User',
+        role: 'user',
         created_at: new Date(),
         updated_at: new Date(),
       };
@@ -125,12 +130,14 @@ describe('User API', () => {
     it('should update an existing user', async () => {
       const updateData = {
         name: 'Updated Name',
+        role: 'admin',
       };
 
       const mockUpdatedUser = {
         id: '1',
         email: 'user1@example.com',
         name: 'Updated Name',
+        role: 'admin',
         created_at: new Date(),
         updated_at: new Date(),
       };
@@ -142,6 +149,7 @@ describe('User API', () => {
       expect(response.status).toBe(200);
       expect(response.body.success).toBe(true);
       expect(response.body.data.name).toBe('Updated Name');
+      expect(response.body.data.role).toBe('admin');
       expect(mockUserService.updateUser).toHaveBeenCalledWith('1', updateData);
     });
 
@@ -173,6 +181,7 @@ describe('User API', () => {
         id: '1',
         email: 'user1@example.com',
         name: 'User One',
+        role: 'admin',
         created_at: new Date(),
         updated_at: new Date(),
       };

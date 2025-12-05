@@ -7,6 +7,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
   public email!: string;
   public password!: string;
   public name!: string;
+  public role!: string;
   public created_at!: Date;
   public updated_at!: Date;
 }
@@ -28,6 +29,10 @@ User.init(
       allowNull: false,
     },
     name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    role: {
       type: DataTypes.STRING,
       allowNull: false,
     },
