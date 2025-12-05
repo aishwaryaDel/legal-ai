@@ -16,16 +16,13 @@ const router = Router();
 *       properties:
 *         name:
 *           type: string
-*           example: string
+*           example: John Doe
 *         email:
 *           type: string
-*           example: string
+*           example: john.doe@example.com
 *         password:
 *           type: string
-*           example: string
-*         role:
-*           type: string
-*           example: admin
+*           example: securePassword123
 * @openapi
 * /api/users:
 *   get:

@@ -2,14 +2,12 @@ export interface CreateUserDTO {
   email: string;
   password: string;
   name: string;
-  role: string;
 }
 
 export interface UpdateUserDTO {
   email?: string;
   password?: string;
   name?: string;
-  role?: string;
 }
 
 export interface UserAttributes {
@@ -17,7 +15,6 @@ export interface UserAttributes {
   email: string;
   password: string;
   name: string;
-  role: string;
   created_at?: Date;
   updated_at?: Date;
 }

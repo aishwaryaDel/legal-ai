@@ -52,3 +52,38 @@ export const VALIDATION_MESSAGES = {
   NAME_EMPTY: 'Name cannot be empty',
   ROLE_EMPTY: 'Role cannot be empty',
 };
+
+export const ROLE_MESSAGES = {
+  ID_REQUIRED: 'Role ID is required',
+  NAME_REQUIRED: 'Role name is required',
+  NOT_FOUND: 'Role not found',
+  FETCH_ERROR: 'Failed to fetch role',
+  FETCH_ALL_ERROR: 'Failed to fetch roles',
+  CREATED_SUCCESS: 'Role created successfully',
+  CREATE_ERROR: 'Failed to create role',
+  UPDATED_SUCCESS: 'Role updated successfully',
+  UPDATE_ERROR: 'Failed to update role',
+  NO_UPDATE_DATA: 'No update data provided',
+  DELETED_SUCCESS: 'Role deleted successfully',
+  DELETE_ERROR: 'Failed to delete role',
+  ALREADY_EXISTS: 'Role with this name already exists',
+};
+
+export const USER_ROLE_MESSAGES = {
+  ID_REQUIRED: 'User-role mapping ID is required',
+  USER_ID_REQUIRED: 'User ID is required',
+  ROLE_ID_REQUIRED: 'Role ID is required',
+  NOT_FOUND: 'User-role mapping not found',
+  FETCH_ERROR: 'Failed to fetch user-role mapping',
+  FETCH_ALL_ERROR: 'Failed to fetch user-role mappings',
+  ASSIGNED_SUCCESS: 'Role assigned to user successfully',
+  ASSIGN_ERROR: 'Failed to assign role to user',
+  UPDATED_SUCCESS: 'User-role mapping updated successfully',
+  UPDATE_ERROR: 'Failed to update user-role mapping',
+  NO_UPDATE_DATA: 'No update data provided',
+  REMOVED_SUCCESS: 'Role removed from user successfully',
+  REMOVE_ERROR: 'Failed to remove role from user',
+  DELETED_SUCCESS: 'User-role mapping deleted successfully',
+  DELETE_ERROR: 'Failed to delete user-role mapping',
+  ALREADY_ASSIGNED: 'User already has this role assigned',
+};
