@@ -52,3 +52,35 @@ export const VALIDATION_MESSAGES = {
   NAME_EMPTY: 'Name cannot be empty',
   ROLE_EMPTY: 'Role cannot be empty',
 };
+
+export const ROLE_MESSAGES = {
+  ID_REQUIRED: 'Role ID is required',
+  NOT_FOUND: 'Role not found',
+  FETCH_ERROR: 'Failed to fetch role',
+  FETCH_ALL_ERROR: 'Failed to fetch roles',
+  CREATED_SUCCESS: 'Role created successfully',
+  CREATE_ERROR: 'Failed to create role',
+  UPDATED_SUCCESS: 'Role updated successfully',
+  UPDATE_ERROR: 'Failed to update role',
+  NO_UPDATE_DATA: 'No update data provided',
+  DELETED_SUCCESS: 'Role deleted successfully',
+  DELETE_ERROR: 'Failed to delete role',
+  SYSTEM_ROLE_DELETE: 'Cannot delete system roles',
+  ROLE_HAS_ASSIGNMENTS: 'Cannot delete role with active user assignments',
+  ASSIGNMENT_SUCCESS: 'Role assigned to user successfully',
+  ASSIGNMENT_ERROR: 'Failed to assign role to user',
+  UNASSIGNMENT_SUCCESS: 'Role removed from user successfully',
+  UNASSIGNMENT_ERROR: 'Failed to remove role from user',
+  ASSIGNMENT_NOT_FOUND: 'Role assignment not found',
+  USER_ROLES_FETCH_ERROR: 'Failed to fetch user roles',
+  ROLE_USERS_FETCH_ERROR: 'Failed to fetch users for role',
+  PERMISSION_DENIED: 'Permission denied',
+  INVALID_PERMISSIONS: 'Invalid permissions structure',
+};
+
+export const RBAC_MESSAGES = {
+  UNAUTHORIZED: 'Unauthorized access',
+  INSUFFICIENT_PERMISSIONS: 'Insufficient permissions',
+  INVALID_TOKEN: 'Invalid authentication token',
+  TOKEN_REQUIRED: 'Authentication token is required',
+};
