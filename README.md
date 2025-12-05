@@ -1,1 +1,1 @@
-# legal-ai
+LegalAI
