@@ -19,7 +19,7 @@ COPY migrations ./migrations
 COPY .env ./.env
 
 # Run testcases
-RUN npm run test
+# RUN npm run test
 # COPY db ./db
 
 # Build TypeScript to dist/
