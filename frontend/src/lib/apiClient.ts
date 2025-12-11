@@ -124,9 +124,10 @@ class ApiClient {
   };
 
   files = {
-    upload: async (file: File): Promise<ApiResponse<{ url: string }>> => {
+    upload: async (file: File, directory: string = 'legal'): Promise<ApiResponse<{ url: string }>> => {
       const formData = new FormData();
       formData.append('file', file);
+      formData.append('directory', directory);
 
       const url = buildUrl('/api/files/upload');
       const headers: Record<string, string> = {};

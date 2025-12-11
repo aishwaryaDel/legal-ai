@@ -9,8 +9,9 @@ export const fileController = {
       }
 
       const file = req.file;
+      const directory = req.body.directory || 'legal';
       const blobName = `${Date.now()}-${file.originalname}`;
-      const url = await azureStorage.uploadBuffer(file.buffer, blobName, file.mimetype);
+      const url = await azureStorage.uploadBuffer(file.buffer, blobName, file.mimetype, directory);
 
       return res.status(201).json({ url });
     } catch (err: any) {

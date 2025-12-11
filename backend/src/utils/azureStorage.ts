@@ -29,10 +29,11 @@ async function getContainerClient(): Promise<ContainerClient> {
   return containerClient;
 }
 
-export async function uploadBuffer(buffer: Buffer, blobName: string, contentType?: string) {
+export async function uploadBuffer(buffer: Buffer, blobName: string, contentType?: string, directory?: string) {
   if (!connectionString) throw new Error('Azure Storage connection string is not configured');
   const container = await getContainerClient();
-  const blockBlobClient = container.getBlockBlobClient(blobName);
+  const fullBlobName = directory ? `${directory}/${blobName}` : blobName;
+  const blockBlobClient = container.getBlockBlobClient(fullBlobName);
   const options = contentType ? { blobHTTPHeaders: { blobContentType: contentType } } : undefined;
   await blockBlobClient.uploadData(buffer, options);
   return blockBlobClient.url;

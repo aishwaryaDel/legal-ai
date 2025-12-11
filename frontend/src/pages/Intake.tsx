@@ -24,14 +24,14 @@ export function Intake() {
   const [submitting, setSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  async function handleFileUpload(file: File) {
+  async function handleFileUpload(file: File, directory: string = 'legal') {
     if (!file) return;
 
     setUploading(true);
     setUploadError(null);
     setUploadedFile(null);
 
-    const result = await apiClient.files.upload(file);
+    const result = await apiClient.files.upload(file, directory);
 
     if (result.success && result.data) {
       setUploadedFile({
@@ -51,14 +51,14 @@ export function Intake() {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
     if (file) {
-      await handleFileUpload(file);
+      await handleFileUpload(file, 'legal');
     }
   }
 
   function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (file) {
-      handleFileUpload(file);
+      handleFileUpload(file, 'legal');
     }
   }
 
