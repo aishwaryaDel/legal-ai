@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { apiClient } from '../lib/apiClient';
 import { useLocale } from '../contexts/LocaleContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useColors } from '../lib/colors';
@@ -17,6 +18,36 @@ interface Issue {
 }
 
 export function Review() {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState<{ name: string; size: number; url: string; uploadedAt: Date } | null>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+    async function handleFileUpload(file: File, directory: string = 'review') {
+      if (!file) return;
+      setUploading(true);
+      setUploadError(null);
+      setUploadedFile(null);
+      const result = await apiClient.files.upload(file, directory);
+      if (result.success && result.data) {
+        setUploadedFile({
+          name: file.name,
+          size: file.size,
+          url: result.data.url,
+          uploadedAt: new Date(),
+        });
+        setUploading(false);
+      } else {
+        setUploadError(result.error || 'Upload failed. Please try again.');
+        setUploading(false);
+      }
+    }
+
+    function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
+      const file = e.target.files?.[0];
+      if (file) {
+        handleFileUpload(file, 'review');
+      }
+    }
   const { isDark } = useTheme();
   const { t } = useLocale();
   const c = useColors(isDark);
@@ -165,10 +196,30 @@ export function Review() {
                 <p className={`${c.text.secondary} mb-6`}>
                   Upload a contract or select from repository to begin analysis
                 </p>
-                <button className="px-6 py-3 bg-tesa-blue text-white rounded-lg hover:brightness-110 transition-all flex items-center gap-2 mx-auto">
-                  <Upload size={20} />
-                  Upload Document
-                </button>
+                <>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}
+                    onChange={handleFileSelect}
+                  />
+                  <button
+                    className="px-6 py-3 bg-tesa-blue text-white rounded-lg hover:brightness-110 transition-all flex items-center gap-2 mx-auto"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={uploading}
+                  >
+                    <Upload size={20} />
+                    {uploading ? 'Uploading...' : 'Upload Document'}
+                  </button>
+                  {uploadError && (
+                    <div className="text-red-600 mt-2 text-sm">{uploadError}</div>
+                  )}
+                  {uploadedFile && (
+                    <div className="text-green-600 mt-2 text-sm">
+                      Uploaded: <a href={uploadedFile.url} target="_blank" rel="noopener noreferrer">{uploadedFile.name}</a>
+                    </div>
+                  )}
+                </>
               </div>
             </div>
           ) : (
