@@ -16,7 +16,7 @@ RUN npm install
 # Copy the remaining code
 COPY src ./src
 COPY migrations ./migrations
-COPY .env ./.env
+# COPY .env ./.env
 
 # Run testcases
 # RUN npm run test
